@@ -20,6 +20,7 @@ import {
   User
 } from 'lucide-react';
 import { mockListings } from '../data/mockListings';
+import Logo from "../assets/bnb-logo.png";
 
 const amenityIcons: Record<string, React.ReactNode> = {
   'WiFi': <Wifi className="w-6 h-6" />,
@@ -41,9 +42,9 @@ export default function DetailsPage() {
 
   if (!listing) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-2">Property not found</h2>
+          <h2 className="mb-2 text-2xl font-semibold">Property not found</h2>
           <Link to="/" className="text-rose-500 hover:underline">
             Back to listings
           </Link>
@@ -77,23 +78,23 @@ export default function DetailsPage() {
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link to="/" className="flex items-center">
-              <svg className="w-8 h-8 text-rose-500" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 1.5c-1.6 0-3.2.7-4.2 2L1.5 12l1.4 1.4L9.2 7c.8-.8 2-.8 2.8 0 .8.8.8 2 0 2.8l-6.3 6.3 1.4 1.4L13.4 11c1.6-1.6 1.6-4.2 0-5.8-1-1.3-2.6-2-4.2-2zm7.8 9.5l-6.3 6.3c-.8.8-2 .8-2.8 0-.8-.8-.8-2 0-2.8l6.3-6.3-1.4-1.4-6.3 6.3c-1.6 1.6-1.6 4.2 0 5.8 1 1 2.3 1.5 3.5 1.5s2.5-.5 3.5-1.5l6.3-6.3-1.4-1.4z"/>
-              </svg>
-              <span className="ml-2 text-xl font-bold text-rose-500">staybnb</span>
+              <img src={Logo} alt="Bnb Logo" className="w-12 h-12" />
+              <span className="text-2xl font-bold font-manrope text-rose-500">
+                airbnb
+              </span>
             </Link>
 
             <div className="flex items-center gap-2">
-              <button className="hidden md:block px-4 py-2 rounded-full hover:bg-gray-100 transition-colors text-sm font-medium">
+              <button className="hidden px-4 py-2 text-sm font-medium transition-colors rounded-full md:block hover:bg-gray-100">
                 Become a Host
               </button>
-              <button className="p-3 rounded-full hover:bg-gray-100 transition-colors">
+              <button className="p-3 transition-colors rounded-full hover:bg-gray-100">
                 <Globe className="w-4 h-4" />
               </button>
-              <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-full hover:shadow-md transition-shadow">
+              <button className="flex items-center gap-2 px-3 py-2 transition-shadow border border-gray-300 rounded-full hover:shadow-md">
                 <Menu className="w-4 h-4" />
                 <User className="w-5 h-5" />
               </button>
@@ -102,18 +103,18 @@ export default function DetailsPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <button
           onClick={() => navigate('/')}
-          className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-6 transition-colors"
+          className="flex items-center gap-2 mb-6 text-gray-700 transition-colors hover:text-gray-900"
         >
           <ChevronLeft className="w-5 h-5" />
           <span className="font-medium">Back to listings</span>
         </button>
 
         <div className="mb-6">
-          <h1 className="text-3xl font-semibold mb-2">{listing.title}</h1>
-          <div className="flex items-center gap-4 flex-wrap">
+          <h1 className="mb-2 text-3xl font-semibold">{listing.title}</h1>
+          <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-1">
               <Star className="w-4 h-4 fill-current" />
               <span className="font-medium">{listing.rating}</span>
@@ -123,12 +124,12 @@ export default function DetailsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 rounded-xl overflow-hidden mb-12 h-96">
-          <div className="col-span-4 md:col-span-2 row-span-2">
+        <div className="grid grid-cols-4 gap-2 mb-12 overflow-hidden rounded-xl h-96">
+          <div className="col-span-4 row-span-2 md:col-span-2">
             <img
               src={listing.images[0]}
               alt={listing.title}
-              className="w-full h-full object-cover hover:brightness-95 transition-all cursor-pointer"
+              className="object-cover w-full h-full transition-all cursor-pointer hover:brightness-95"
             />
           </div>
           {listing.images.slice(1, 5).map((image, index) => (
@@ -136,16 +137,16 @@ export default function DetailsPage() {
               <img
                 src={image}
                 alt={`${listing.title} ${index + 2}`}
-                className="w-full h-full object-cover hover:brightness-95 transition-all cursor-pointer"
+                className="object-cover w-full h-full transition-all cursor-pointer hover:brightness-95"
               />
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 gap-12 mb-12 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="pb-8 border-b border-gray-200">
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="mb-4 text-2xl font-semibold">
                 {listing.type} hosted by {listing.host.name}
               </h2>
               <div className="flex items-center gap-4 text-gray-700">
@@ -169,13 +170,13 @@ export default function DetailsPage() {
             </div>
 
             <div className="py-8 border-b border-gray-200">
-              <h3 className="text-xl font-semibold mb-4">About this place</h3>
-              <p className="text-gray-700 leading-relaxed">{listing.description}</p>
+              <h3 className="mb-4 text-xl font-semibold">About this place</h3>
+              <p className="leading-relaxed text-gray-700">{listing.description}</p>
             </div>
 
             <div className="py-8 border-b border-gray-200">
-              <h3 className="text-xl font-semibold mb-6">What this place offers</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h3 className="mb-6 text-xl font-semibold">What this place offers</h3>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {listing.amenities.map((amenity, index) => (
                   <div key={index} className="flex items-center gap-4">
                     <div className="text-gray-700">
@@ -192,11 +193,11 @@ export default function DetailsPage() {
                 <img
                   src={listing.host.avatar}
                   alt={listing.host.name}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="object-cover w-16 h-16 rounded-full"
                 />
                 <div>
-                  <h3 className="font-semibold text-lg">Hosted by {listing.host.name}</h3>
-                  <p className="text-gray-600 text-sm">Joined in {listing.host.joinedDate}</p>
+                  <h3 className="text-lg font-semibold">Hosted by {listing.host.name}</h3>
+                  <p className="text-sm text-gray-600">Joined in {listing.host.joinedDate}</p>
                 </div>
               </div>
             </div>
@@ -204,16 +205,16 @@ export default function DetailsPage() {
 
           <div className="lg:col-span-1">
             <div className="sticky top-32">
-              <div className="border border-gray-300 rounded-xl p-6 shadow-xl">
+              <div className="p-6 border border-gray-300 shadow-xl rounded-xl">
                 <div className="flex items-baseline gap-1 mb-6">
                   <span className="text-2xl font-semibold">${listing.price}</span>
                   <span className="text-gray-600">night</span>
                 </div>
 
-                <div className="border border-gray-300 rounded-lg mb-4 overflow-hidden">
+                <div className="mb-4 overflow-hidden border border-gray-300 rounded-lg">
                   <div className="grid grid-cols-2">
-                    <div className="border-r border-b border-gray-300 p-3">
-                      <label className="block text-xs font-semibold mb-1">CHECK-IN</label>
+                    <div className="p-3 border-b border-r border-gray-300">
+                      <label className="block mb-1 text-xs font-semibold">CHECK-IN</label>
                       <input
                         type="date"
                         value={checkIn}
@@ -221,8 +222,8 @@ export default function DetailsPage() {
                         className="w-full text-sm focus:outline-none"
                       />
                     </div>
-                    <div className="border-b border-gray-300 p-3">
-                      <label className="block text-xs font-semibold mb-1">CHECK-OUT</label>
+                    <div className="p-3 border-b border-gray-300">
+                      <label className="block mb-1 text-xs font-semibold">CHECK-OUT</label>
                       <input
                         type="date"
                         value={checkOut}
@@ -232,7 +233,7 @@ export default function DetailsPage() {
                     </div>
                   </div>
                   <div className="p-3">
-                    <label className="block text-xs font-semibold mb-1">GUESTS</label>
+                    <label className="block mb-1 text-xs font-semibold">GUESTS</label>
                     <select
                       value={guests}
                       onChange={(e) => setGuests(Number(e.target.value))}
@@ -247,17 +248,17 @@ export default function DetailsPage() {
 
                 <button
                   onClick={handleReserve}
-                  className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 rounded-lg transition-colors mb-4"
+                  className="w-full py-3 mb-4 font-semibold text-white transition-colors rounded-lg bg-rose-500 hover:bg-rose-600"
                 >
                   Reserve
                 </button>
 
-                <p className="text-center text-sm text-gray-600 mb-4">
+                <p className="mb-4 text-sm text-center text-gray-600">
                   You won't be charged yet
                 </p>
 
                 {nights > 0 && (
-                  <div className="space-y-3 pt-4 border-t border-gray-200">
+                  <div className="pt-4 space-y-3 border-t border-gray-200">
                     <div className="flex justify-between">
                       <span className="underline">${listing.price} x {nights} nights</span>
                       <span>${subtotal}</span>
@@ -266,7 +267,7 @@ export default function DetailsPage() {
                       <span className="underline">Service fee</span>
                       <span>${serviceFee}</span>
                     </div>
-                    <div className="flex justify-between font-semibold text-lg pt-3 border-t border-gray-200">
+                    <div className="flex justify-between pt-3 text-lg font-semibold border-t border-gray-200">
                       <span>Total</span>
                       <span>${total}</span>
                     </div>
@@ -274,12 +275,12 @@ export default function DetailsPage() {
                 )}
               </div>
 
-              <div className="mt-6 flex gap-4">
-                <button className="flex items-center gap-2 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors">
+              <div className="flex gap-4 mt-6">
+                <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors rounded-lg hover:bg-gray-100">
                   <Share2 className="w-4 h-4" />
                   <span className="text-sm font-medium">Share</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 text-gray-700 transition-colors rounded-lg hover:bg-gray-100">
                   <Heart className="w-4 h-4" />
                   <span className="text-sm font-medium">Save</span>
                 </button>
