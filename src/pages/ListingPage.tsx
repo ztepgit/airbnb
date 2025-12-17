@@ -14,6 +14,8 @@ export default function ListingPage() {
     amenities: [],
   });
 
+  
+
   const filteredListings = mockListings.filter((listing) => {
     if (
       filters.locations.length > 0 &&
